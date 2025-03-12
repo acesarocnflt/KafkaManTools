@@ -1,0 +1,24 @@
+all:
+  vars:
+    ansible_connection: ssh
+    ansible_user: vagrant
+    ansible_become: true
+    ansible_become_localhost: true
+    ansible_ssh_private_key_file: "{{ inventory_dir }}/.vagrant/machines/default/vmware_desktop/private_key"
+
+kafka_broker:
+  hosts:
+    confluent:
+      ansible_host: 192.168.33.10
+      certs:
+        - alias: okta
+          cert_path: "/home/vagrant/okta-com-chain.pem"
+      truststore_path: "/app/var/ssl/private/kafka_broker.truststore.jks"
+      truststore_password: confluenttruststorepass
+    # confluent1:
+    #   ansible_host: 192.168.33.11
+    #   certs:
+    #     - alias: okta
+    #       cert_path: "/home/vagrant/okta-com-chain.pem"
+    #   truststore_path: "/app/var/ssl/private/kafka_broker.truststore.jks"
+    #   truststore_password: confluenttruststorepass
