@@ -18,6 +18,10 @@
       with_items: "{{ certs }}"
       when: certs is defined
 
+    # DEBUG section
     - name: Debug certs variable
       debug:
         var: certs
+    - name: Debug SSH Private Key File
+      debug:
+        msg: "Using SSH private key file: {{ ansible_ssh_private_key_file }}"
